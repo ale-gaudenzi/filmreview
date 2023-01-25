@@ -107,42 +107,35 @@ function checkBook(button)
     }
 }
 
-function checkReview()
-{
+function checkReview() {
     text = $("#review_text");
     rate = $("#rate_select");
     movie = $("#movie_select");
     
-
     movie_msg = $("#invalid-movie");
     rate_msg = $("#invalid-rate");
-
+    success_msg = $("#success-message");
     var error = false;
-    
-    if (rate.val() == "Voto")
-    {
+
+    if (rate.val() == "Voto") {
         rate_msg.html("  Il campo voto è obbligatorio!");
         rate.focus();
         error = true;
+    } else {
+        rate_msg.html("");
     }
     
-    if (movie.val() == "Film già presenti")
-    {
+    if (movie.val() == "Film già presenti") {
         movie_msg.html("  Devi selezionare un film!");
         movie.focus();
         error = true;
+    } else {
+        movie_msg.html("");
     }
-    
-    if (!error)
-    {
-        $.ajax({
-            type: 'GET',
-            url: '/ajaxBook',
-            data: {title: title.val().trim()},
-            success: function (data) {
-                $('form[name=book]').submit();
-            }
-        });
+    success_msg.html("Recensione inserita!");
+
+    if (!error) {
+        $('form[name=review_form]').submit();
     }
 }
 

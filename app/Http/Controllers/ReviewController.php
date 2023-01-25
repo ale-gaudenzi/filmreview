@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
+use Illuminate\Support\Facades\Redirect;
 
 class ReviewController extends Controller
 {
@@ -22,12 +23,14 @@ class ReviewController extends Controller
         } 
     }
 
-    public function addReviewExistingMovie(Request $request) {
+    public function store(Request $request) {
+        session_start();
+
         $dl = new DataLayer();
-        $dl->addReview($id, $request->input('movie_id'), $request->input('rate'), $request->input('text'));
+        $userID = $dl->getUserID($_SESSION["loggedName"]);
+
+        $dl->addReview($request->input('movie_select'), $request->input('rate_select'), 
+                        $request->input('review_text'), $userID);
         return Redirect::to(route('home'));
     }
-
-
-
 }

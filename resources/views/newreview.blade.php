@@ -31,71 +31,73 @@ Inserisci nuova recensione
 @endsection
 
 @section('breadcrumb')
-<li><a class="active">Home</a></li>
+<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+<li class="active breadcrumb-item ml-auto">Nuova recensione</li>
+
 @endsection
 
 @section('corpo')
 
 
 <div class="container py-5 col-md-8">
-<div class="container col-md-8">
-    <form class="form-horizontal" name="review" method="post" action="{{ route('review.store') }}">
-    Film:
+    <form class="form-horizontal" name="review_form" method="POST" action="{{ route('review.store') }}" id="review_form">
+        
+        <div class="container col-md-8">
+            <label for="movie_select">Film:</label>
+            <span class="invalid-input" id="invalid-movie"></span>
+            <div class="row">
+                <div class="col-md-10">
+                    <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="movie_select" id="movie_select" >
+                        <option selected="selected">Film già presenti</option>
+                        @foreach($movieList as $movie)
+                        <option value="{{ $movie->title }}">{{ $movie->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-    <span class="invalid-input" id="invalid-movie"></span>
+                <div class="col-md-2 py-1">
+                    <div class="form-group">
+                        <label for="newMovie" class="btn btn-primary btn-large btn-block">Nuovo</label>
+                        <input id="newMovie" type="submit" value="Save" hidden onclick="event.preventDefault()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="movie" id="movie_select">
-        <option selected>Film già presenti</option>
-        @foreach($movieList as $movie)
-        <option value="{{ $movie->title }}" selected="selected">{{ $movie->title }}</option>
-        @endforeach
-    </select>
+        @csrf
+        <div class="container col-md-8">
+            <label for="rate_select">Voto:</label>
+            <span class="invalid-input" id="invalid-rate"></span>
+            <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="rate_select" id="rate_select">
+                <option selected="selected">Voto</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
 
-    </div>
+        <div class="container col-md-8">
+            <label for="review_text">Recensione:</label>
+            <div class="form-group">
+                    <textarea class="form-control mb3" id="review_text" name="review_text" rows="10" placeholder="Testo recensione"></textarea>
+            </div>
+        </div>
 
-    @csrf
-
-    <div class="container col-md-8">
-    Voto:
-    <span class="invalid-input" id="invalid-rate"></span>
-    <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="rate" id="rate_select">
-        <option selected>Voto</option>
-        <option value="1" selected="selected">1</option>
-        <option value="2" selected="selected">2</option>
-        <option value="3" selected="selected">3</option>
-        <option value="4" selected="selected">4</option>
-        <option value="5" selected="selected">5</option>
-        <option value="6" selected="selected">6</option>
-        <option value="7" selected="selected">7</option>
-        <option value="8" selected="selected">8</option>
-        <option value="9" selected="selected">9</option>
-        <option value="10" selected="selected">10</option>
-    </select>
-
-
-    </div>
-
-    <div class="container col-md-8">
-
-    Recensione:
-    <div class="form-group">
-        <input type="text" name="review_text" class="form-control mb-2" placeholder="Testo"/>
-    </div>
-
-    <div class="container py-3 col-md-3">
-
-    <div class="form-group">
-        <label for="mySubmit" class="btn btn-primary btn-large btn-block">Inserisci</label>
-        <input id="mySubmit" type="submit" value="Save" hidden onclick="event.preventDefault(); checkReview()"/>
-    </div>
-    </div>
-
+        <div class="container py-3 col-md-2">
+            <div class="form-group">
+                <label for="mySubmit" class="btn btn-primary btn-large btn-block">Inserisci</label>
+                <input id="mySubmit" type="submit" value="Save" hidden onclick="event.preventDefault(); checkReview()"/>
+            </div>
+            <span id="success-message"></span>
+        </div>
     </form>
-    </div>
-
-</div>
-
-
 </div>
 
 

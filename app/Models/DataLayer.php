@@ -30,11 +30,31 @@ class DataLayer {
         return $movies->sortBy('title');
     }
 
-    public function addReview($movie_id, $rate, $text) {
+    public function addReview($movie_title, $rate, $text, $user_id) {
+        $movie = DB::table('movie')->where('title', $movie_title)->get(['movie_id']);
+        
         $review = New Review;
         $review->rate = $rate;
         $review->text = $text;
-        $review->movie = $movie_id;
+        $review->movie = $movie[0]->movie_id;
+        $review->user = $user_id;
         $review->save();
+    }
+
+    public function findMovieByTitle($title)
+    {
+        $movie = Movie::where('title', $title)->get();
+
+        if (count($movie) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function getUserID($username)
+    {
+        $users = User::where('username', $username)->get(['user_id']);
+        return $users[0]->user_id;
     }
 }

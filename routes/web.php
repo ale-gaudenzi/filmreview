@@ -24,6 +24,5 @@ Route::get('/movie', [MovieController::class, 'getBest']) -> name('best');
 
 Route::resource('review', ReviewController::class);
 Route::get('/review', [ReviewController::class, 'newReviewForm']) -> name('review.new');
-
-
+Route::get('/ajaxReview', [ReviewController::class, 'ajaxCheckReview']);
 
