@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class ReviewController extends Controller
 {
-
-
     public function newReviewForm(Request $request) {
         session_start();
 
@@ -32,5 +30,21 @@ class ReviewController extends Controller
         $dl->addReview($request->input('movie_select'), $request->input('rate_select'), 
                         $request->input('review_text'), $userID);
         return Redirect::to(route('home'));
+    }
+
+    public function showReviews($movie) {
+        session_start();
+
+        $dl = new DataLayer();
+
+        $review_list = $dl->listReviewByMovie($movie);
+        $movie_title = $dl->movieById($movie);
+        
+        if (isset($_SESSION['logged'])) {
+            return view('review')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('reviewList', $review_list)->with('movie_title', $movie_title);
+        } else {
+            return view('review')->with('logged', false)->with('loggedName', $_SESSION['loggedName'])->with('reviewList', $review_list)->with('movie_title', $movie_title);
+
+        }
     }
 }

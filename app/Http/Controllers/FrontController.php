@@ -26,8 +26,13 @@ class FrontController extends Controller
     public function getProfile(Request $request) {
         session_start();
 
+        $dl = new DataLayer();
+
+        $review_list = $dl->listUserReviewsWithMovieByDate($_SESSION['loggedName']);
+
         if (isset($_SESSION['logged'])) {
-            return view('profile')->with('logged', true)->with('loggedName', $_SESSION['loggedName']);
+            return view('profile')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])
+            ->with('reviewList', $review_list);
         } 
     }
 
@@ -39,5 +44,6 @@ class FrontController extends Controller
             return view('newreview')->with('logged', true)->with('loggedName', $_SESSION['loggedName']);
         } 
     }
+    
 
 }

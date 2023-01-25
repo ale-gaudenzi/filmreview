@@ -37,4 +37,59 @@ Profilo di {{ $loggedName }}
 
 @section('corpo')
 
+@foreach($reviewList as $review)
+<div class="container py-3 col-md-8">
+  <div class="card">
+    <div class="row ">
+      <div class="col-md-5">
+        <div id="CarouselTest" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#CarouselTest" data-slide-to="0" class="active"></li>
+            <li data-target="#CarouselTest" data-slide-to="1"></li>
+            <li data-target="#CarouselTest" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner"> <!--non carousel-->
+            <div class="carousel-item active">
+              <img class="d-block" src="https://picsum.photos/450/300?image=1072" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7 px-5">
+        <div class="card-block">
+          <br>
+          <h3 class="card-title">{{ $review->title }} </h3>
+          <p class="card-text"> Regista: {{ $review->director }} </p>
+          <p class="card-text"> Genere: {{ $review->genre }} </p>
+          <p class="card-text"> Durata: {{ $review->duration }} minuti </p>
+          <p class="card-text"> Voto medio: {{ $review->medium_rate }} (su {{ $review->review_number }} recensioni)</p>
+          <a href="{{ route('review.showReviews', ['id' => $review->movie] ) }}" class="mt-auto btn btn-primary">Tutte le recensioni</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container col-md-12">
+  <div class="card">
+    <div class="row ">
+    <div class="col-md-5 px-5">
+    <br>
+
+    <p class="card-text"> Voto: {{ $review->rate }} </p>
+    </div>
+    <div class="col-md-7 px-5">
+    <br>
+
+    <p class="card-text"> Recensione: <br>{{ $review->text }}</p>
+    <br>
+
+  </div>
+    </div>
+</div>
+  </div>
+</div>
+@endforeach
+
+
+
 @endsection

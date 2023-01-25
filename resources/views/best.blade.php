@@ -3,7 +3,7 @@
 @section('stile', 'style.css')
 
 @section('titolo')
-Best review
+Migliori filem
 @endsection
 
 
@@ -38,7 +38,8 @@ Best review
 @endsection
 
 @section('breadcrumb')
-<li><a class="active">Home</a></li>
+<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+<li class="active breadcrumb-item ml-auto">Migliori film</li>
 @endsection
 
 @section('corpo')
@@ -70,6 +71,7 @@ Best review
           <p class="card-text"> Genere: {{ $movie->genre }} </p>
           <p class="card-text"> Durata: {{ $movie->duration }} minuti </p>
           <p class="card-text"> Voto medio: {{ $movie->medium_rate }} (su {{ $movie->review_number }} recensioni)</p>
+          <a href="#" class="mt-auto btn btn-primary">Tutte le recensioni</a>
         </div>
       </div>
 
