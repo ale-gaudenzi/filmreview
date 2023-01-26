@@ -71,7 +71,7 @@ Ultime Recensioni
           <p class="card-text"> Genere: {{ $review->genre }} </p>
           <p class="card-text"> Durata: {{ $review->duration }} minuti </p>
           <p class="card-text"> Voto medio: {{ $review->medium_rate }} (su {{ $review->review_number }} recensioni)</p>
-          <a href="#" class="mt-auto btn btn-primary">Tutte le recensioni</a>
+          <a href="{{ route('review.showReviews', ['id' => $review->movie_id] ) }}" class="mt-auto btn btn-primary">Tutte le recensioni</a>
         </div>
       </div>
     </div>

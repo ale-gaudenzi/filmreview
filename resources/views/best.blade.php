@@ -3,7 +3,7 @@
 @section('stile', 'style.css')
 
 @section('titolo')
-Migliori filem
+Migliori film
 @endsection
 
 
@@ -71,7 +71,7 @@ Migliori filem
           <p class="card-text"> Genere: {{ $movie->genre }} </p>
           <p class="card-text"> Durata: {{ $movie->duration }} minuti </p>
           <p class="card-text"> Voto medio: {{ $movie->medium_rate }} (su {{ $movie->review_number }} recensioni)</p>
-          <a href="#" class="mt-auto btn btn-primary">Tutte le recensioni</a>
+          <a href="{{ route('review.showReviews', ['id' => $movie->movie_id] ) }}" class="mt-auto btn btn-primary">Tutte le recensioni</a>
         </div>
       </div>
 

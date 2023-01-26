@@ -38,13 +38,14 @@ class ReviewController extends Controller
         $dl = new DataLayer();
 
         $review_list = $dl->listReviewByMovie($movie);
-        $movie_title = $dl->movieById($movie);
+        $movie = $dl -> movieById($movie);
         
         if (isset($_SESSION['logged'])) {
-            return view('review')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])->with('reviewList', $review_list)->with('movie_title', $movie_title);
+            return view('review')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])
+            ->with('reviewList', $review_list)->with('movie', $movie[0]);
         } else {
-            return view('review')->with('logged', false)->with('loggedName', $_SESSION['loggedName'])->with('reviewList', $review_list)->with('movie_title', $movie_title);
-
+            return view('review')->with('logged', false)->with('loggedName', $_SESSION['loggedName'])
+            ->with('reviewList', $review_list)->with('movie', $movie[0]);
         }
     }
 }

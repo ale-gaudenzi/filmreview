@@ -3,7 +3,7 @@
 @section('stile', 'style.css')
 
 @section('titolo')
-Recensioni di {{ $movie_title }}
+Recensioni di {{ $movie->title }}
 @endsection
 
 
@@ -40,7 +40,7 @@ Recensioni di {{ $movie_title }}
 
 @section('breadcrumb')
   <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-  <li class="active breadcrumb-item ml-auto">{{$movie_title}}</li>
+  <li class="active breadcrumb-item ml-auto">{{$movie->title}}</li>
 @endsection
 
 @section('corpo')
@@ -65,8 +65,11 @@ Recensioni di {{ $movie_title }}
       <div class="col-md-7 px-5">
         <div class="card-block">
           <br>
-          <h3 class="card-title">{{ $movie_title }} </h3>
-
+          <h3 class="card-title">{{ $movie->title }} </h3>
+          <p class="card-text"> Regista: {{ $movie->director }} </p>
+          <p class="card-text"> Genere: {{ $movie->genre }} </p>
+          <p class="card-text"> Durata: {{ $movie->duration }} minuti </p>
+          <p class="card-text"> Voto medio: {{ $movie->medium_rate }} (su {{ $movie->review_number }} recensioni)</p>
 
         </div>
       </div>
