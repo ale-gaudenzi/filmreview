@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('stile', 'style.css')
 @section('titolo')
-Accedi
+{{ trans('labels.loginTitle') }}
 @endsection
 
 @section('left_navbar')
@@ -9,22 +9,22 @@ Accedi
         <a class="nav-link"  href="{{ route('home') }}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{{ route('best')}}">Best</a>
+        <a class="nav-link" href="{{ route('best')}}">{{ trans('labels.bestNavbar') }}</a>
     </li>
 @endsection
 
 @section('right_navbar')
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{ route('user.login') }}">Accedi</a>
+        <a class="nav-link" aria-current="page" href="{{ route('user.login') }}">{{ trans('labels.loginNavbar') }}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{{ route('user.register') }}">Registrati</a>
+        <a class="nav-link" aria-current="page" href="{{ route('user.register') }}">{{ trans('labels.registerNavbar') }}</a>
     </li>
 @endsection
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-<li class="active breadcrumb-item ml-auto">Login</li>
+<li class="active breadcrumb-item ml-auto">{{ trans('labels.loginTitle') }}</li>
 @endsection
 
 @section('corpo')
@@ -46,20 +46,20 @@ Accedi
 
                         <div class="form-group text-center mb-2">
                             <input type="checkbox" name="remember">
-                            <label for="remember">Ricordami</label>
+                            <label for="remember">{{ trans('labels.remember') }}</label>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4 offset-md-4 mb-2">
-                                    <input type="submit" name="login-submit" class="form-control btn btn-primary" value="Accedi">
+                                    <input type="submit" name="login-submit" class="form-control btn btn-primary" value="{{ trans('labels.loginNavbar') }}">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="text-center">
-                                <a href="#">Password dimenticata?</a>
+                                <a href="#">{{ trans('labels.lostPass') }}</a>
                             </div>
                         </div>
                     </form>

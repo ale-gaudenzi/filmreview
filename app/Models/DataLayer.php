@@ -96,5 +96,10 @@ class DataLayer {
         return $users[0]->user_id;
     }
 
+    public function searchMovie($words) 
+    {
+        $movie = Movie::where('title', 'like', '%' . $words . '%')->get();
+        return $movie->sortByDesc('medium_rate');
+    }
 
 }

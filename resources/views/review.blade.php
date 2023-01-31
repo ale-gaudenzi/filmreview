@@ -3,7 +3,7 @@
 @section('stile', 'style.css')
 
 @section('titolo')
-Recensioni di {{ $movie->title }}
+{{ trans('labels.reviewsTitle') }} {{ $movie->title }}
 @endsection
 
 
@@ -12,28 +12,27 @@ Recensioni di {{ $movie->title }}
     <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('best') }} ">Best</a>
+    <a class="nav-link" href="{{ route('best') }} ">{{ trans('labels.bestNavbar') }}</a>
   </li>
 @endsection
 
 @section('right_navbar')
   @if($logged)
-    <li class="nav-item">
-      <a class="nav-link" aria-current="page" href="{{ route('review.new') }}">Nuova</a>
+  <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="{{ route('review.new') }}">{{ trans('labels.newNavbar') }}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" aria-current="page" href="{{ route('user.profile') }}">Profilo di {{ $loggedName }}</a>
+      <a class="nav-link" aria-current="page" href="{{ route('user.profile') }}">{{ trans('labels.profileNavbar') }}{{ $loggedName }}</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" aria-current="page" href="{{ route('user.logout') }}">Logout</a>
-    </li>   
-
+    </li>
   @else
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{{ route('user.login') }}">Accedi</a>
+      <a class="nav-link" aria-current="page" href="{{ route('user.login') }}">{{ trans('labels.loginNavbar') }}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{{ route('user.register') }}">Registrati</a>
+      <a class="nav-link" aria-current="page" href="{{ route('user.register') }}">{{ trans('labels.registerNavbar') }}</a>
     </li>
   @endif
 @endsection
@@ -66,11 +65,10 @@ Recensioni di {{ $movie->title }}
         <div class="card-block">
           <br>
           <h3 class="card-title">{{ $movie->title }} </h3>
-          <p class="card-text"> Regista: {{ $movie->director }} </p>
-          <p class="card-text"> Genere: {{ $movie->genre }} </p>
-          <p class="card-text"> Durata: {{ $movie->duration }} minuti </p>
-          <p class="card-text"> Voto medio: {{ $movie->medium_rate }} (su {{ $movie->review_number }} recensioni)</p>
-
+          <p class="card-text"> {{ trans('labels.director') }}: {{ $movie->director }} </p>
+          <p class="card-text"> {{ trans('labels.genre') }}: {{ $movie->genre }} </p>
+          <p class="card-text"> {{ trans('labels.duration') }}: {{ $movie->duration }} minuti </p>
+          <p class="card-text"> {{ trans('labels.averageVote') }}: {{ $movie->medium_rate }} ({{ $movie->review_number }} {{ trans('labels.review') }})</p>
         </div>
       </div>
     </div>
@@ -83,12 +81,12 @@ Recensioni di {{ $movie->title }}
       <div class="row ">
         <div class="col-md-5 px-5">
           <br>
-          <p class="card-text"> Voto: {{ $review->rate }} </p>
+          <p class="card-text"> {{ trans('labels.vote') }}: {{ $review->rate }} </p>
         </div>
 
         <div class="col-md-7 px-5">
           <br>
-          <p class="card-text"> Recensione: <br>{{ $review->text }}</p>
+          <p class="card-text"> {{ trans('labels.review') }}: <br>{{ $review->text }}</p>
           <br>
         </div>
       </div>

@@ -3,7 +3,8 @@
 @section('stile', 'style.css')
 
 @section('titolo')
-Inserisci nuova recensione
+{{ trans('labels.newTitle') }}
+
 @endsection
 
 
@@ -12,17 +13,17 @@ Inserisci nuova recensione
         <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('best') }} ">Best</a>
+        <a class="nav-link" href="{{ route('best') }} ">{{ trans('labels.bestNavbar') }}</a>
     </li>
 @endsection
 
 @section('right_navbar')
     @if($logged)
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ route('review.new') }}">Nuova</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('review.new') }}">{{ trans('labels.newNavbar') }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ route('user.profile') }}">Profilo di {{ $loggedName }}</a>
+            <a class="nav-link" aria-current="page" href="{{ route('user.profile') }}">{{ trans('labels.profileNavbar') }} {{ $loggedName }}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{{ route('user.logout') }}">Logout</a>
@@ -32,7 +33,7 @@ Inserisci nuova recensione
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-<li class="active breadcrumb-item ml-auto">Nuova recensione</li>
+<li class="active breadcrumb-item ml-auto">{{ trans('labels.newReview') }}</li>
 
 @endsection
 
@@ -48,7 +49,7 @@ Inserisci nuova recensione
             <div class="row">
                 <div class="col-md-10">
                     <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="movie_select" id="movie_select" >
-                        <option selected="selected">Film già presenti</option>
+                        <option selected="selected">{{ trans('labels.availableMovies') }}</option>
                         @foreach($movieList as $movie)
                         <option value="{{ $movie->title }}">{{ $movie->title }}</option>
                         @endforeach
@@ -56,20 +57,17 @@ Inserisci nuova recensione
                 </div>
 
                 <div class="col-md-2 py-1">
-                    <div class="form-group">
-                        <label for="newMovie" class="btn btn-primary btn-large btn-block">Nuovo</label>
-                        <input id="newMovie" type="submit" value="Save" hidden onclick="event.preventDefault()"/>
-                    </div>
+                    <a class="btn btn-primary btn-large btn-block" href="{{ route('newmovie') }}">{{ trans('labels.newMovie') }}</a>
                 </div>
             </div>
         </div>
 
         @csrf
         <div class="container col-md-8">
-            <label for="rate_select">Voto:</label>
+            <label for="rate_select">{{ trans('labels.vote') }}:</label>
             <span class="invalid-input" id="invalid-rate"></span>
             <select class="form-select form-select-lg mb-3" aria-label="Default select example" name="rate_select" id="rate_select">
-                <option selected="selected">Voto</option>
+                <option selected="selected">{{ trans('labels.vote') }}</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -84,15 +82,15 @@ Inserisci nuova recensione
         </div>
 
         <div class="container col-md-8">
-            <label for="review_text">Recensione:</label>
+            <label for="review_text">{{ trans('labels.review') }}:</label>
             <div class="form-group">
-                    <textarea class="form-control mb3" id="review_text" name="review_text" rows="10" placeholder="Testo recensione"></textarea>
+                <textarea class="form-control mb3" id="review_text" name="review_text" rows="10" placeholder="{{ trans('labels.reviewText') }}"></textarea>
             </div>
         </div>
 
         <div class="container py-3 col-md-2">
             <div class="form-group">
-                <label for="mySubmit" class="btn btn-primary btn-large btn-block">Inserisci</label>
+                <label for="mySubmit" class="btn btn-primary btn-large btn-block">{{ trans('labels.insert') }}</label>
                 <input id="mySubmit" type="submit" value="Save" hidden onclick="event.preventDefault(); checkReview()"/>
             </div>
             <span id="success-message"></span>

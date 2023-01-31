@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('stile', 'style.css')
+
 @section('titolo')
-Registrati
+{{ trans('labels.registrationTitle') }}
 @endsection
 
 @section('left_navbar')
@@ -9,22 +10,22 @@ Registrati
         <a class="nav-link"  href="{{ route('home') }}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{{ route('best')}}">Best</a>
+        <a class="nav-link"  href="{{ route('best')}}">{{ trans('labels.bestNavbar') }}</a>
     </li>
 @endsection
 
 @section('right_navbar')
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{{ route('user.login') }}">Accedi</a>
+        <a class="nav-link" aria-current="page" href="{{ route('user.login') }}">{{ trans('labels.loginNavbar') }}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{ route('user.register') }}">Registrati</a>
+        <a class="nav-link active" aria-current="page" href="{{ route('user.register') }}">{{ trans('labels.registerNavbar') }}</a>
     </li>
 @endsection
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-<li class="active breadcrumb-item">Registration</li>
+<li class="active breadcrumb-item">{{ trans('labels.registrationTitle') }}</li>
 @endsection
 
 @section('corpo')
@@ -50,7 +51,7 @@ Registrati
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4 offset-md-4">
-                                    <input type="submit" name="login-submit" class="form-control btn btn-primary" value="Registrati">
+                                    <input type="submit" name="login-submit" class="form-control btn btn-primary" value="{{ trans('labels.registrationTitle') }}">
                                 </div>
                             </div>
                         </div>

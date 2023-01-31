@@ -3,8 +3,7 @@
 @section('stile', 'style.css')
 
 @section('titolo')
-{{ trans('labels.bestTitle') }}
-
+{{ trans('labels.searchTitle') }}"{{$textWords}}"
 @endsection
 
 
@@ -13,12 +12,12 @@
         <a class="nav-link"  href="{{ route('home') }}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{ route('best')}}">{{ trans('labels.bestNavbar') }}</a>
+        <a class="nav-link" href="{{ route('best')}}">{{ trans('labels.bestNavbar') }}</a>
     </li>
 @endsection
 
 @section('right_navbar')
-    @if($logged)
+  @if($logged)
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{{ route('review.new') }}">{{ trans('labels.newNavbar') }}</a>
         </li>
@@ -36,15 +35,21 @@
             <a class="nav-link" aria-current="page" href="{{ route('user.register') }}">{{ trans('labels.registerNavbar') }}</a>
         </li>
     @endif
+
 @endsection
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-<li class="active breadcrumb-item ml-auto">{{ trans('labels.bestTitle') }}</li>
+<li class="active breadcrumb-item ml-auto">{{ trans('labels.research') }}</li>
 @endsection
 
 @section('corpo')
 
+@if(count($movieList) === 0)
+<div class="container py-5 px-5 col-md-2">
+  {{ trans('labels.noFilm') }}
+</div>
+@else
 @foreach($movieList as $movie)
 <div class="container py-3 col-md-8">
   <div class="card">
@@ -72,7 +77,7 @@
           <p class="card-text"> {{ trans('labels.genre') }}: {{ $movie->genre }} </p>
           <p class="card-text"> {{ trans('labels.duration') }}: {{ $movie->duration }} minuti </p>
           <p class="card-text"> {{ trans('labels.averageVote') }}: {{ $movie->medium_rate }} ({{ $movie->review_number }} {{ trans('labels.review') }})</p>
-          <a href="{{ route('review.showReviews', ['id' => $movie->movie_id] ) }}" class="mt-auto btn btn-primary">{{ trans('labels.allReviews') }}</a>
+          <a href="{{ route('review.showReviews', ['id' => $movie->movie_id] ) }}" class="mt-auto btn btn-primary">{{ trans('labels.allReviews') }}</a> 
         </div>
       </div>
 
@@ -81,9 +86,10 @@
 </div>
 @endforeach
 
+@endif
+
 <br>
 <br>
-
-
 
 @endsection
+

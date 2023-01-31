@@ -23,4 +23,15 @@ class MovieController extends Controller
         }
 
     }
+
+    public function newMovieForm(Request $request) {
+        session_start();
+
+        $dl = new DataLayer();
+
+        if (isset($_SESSION['logged'])) {
+            return view('newmovie')->with('logged', true)
+            ->with('loggedName', $_SESSION['loggedName']);
+        } 
+    }
 }

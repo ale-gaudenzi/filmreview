@@ -13,3 +13,6 @@ class LangController extends Controller
         return redirect()->back();
     }
 }
+
+
+

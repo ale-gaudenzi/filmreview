@@ -3,7 +3,7 @@
 @section('stile', 'style.css')
 
 @section('titolo')
-Ultime Recensioni
+{{ trans('labels.siteTitle') }}
 @endsection
 
 
@@ -12,29 +12,32 @@ Ultime Recensioni
         <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('best') }} ">Best</a>
+        <a class="nav-link" href="{{ route('best') }} ">{{ trans('labels.bestNavbar') }}</a>
     </li>
+
+
+
 @endsection
 
 @section('right_navbar')
-    @if($logged)
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ route('review.new') }}">Nuova</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ route('user.profile') }}">Profilo di {{ $loggedName }}</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ route('user.logout') }}">Logout</a>
-        </li>
-    @else
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ route('user.login') }}">Accedi</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ route('user.register') }}">Registrati</a>
-        </li>
-    @endif
+  @if($logged)
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="{{ route('review.new') }}">{{ trans('labels.newNavbar') }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="{{ route('user.profile') }}">{{ trans('labels.profileNavbar') }}{{ $loggedName }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="{{ route('user.logout') }}">Logout</a>
+    </li>
+  @else
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="{{ route('user.login') }}">{{ trans('labels.loginNavbar') }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="{{ route('user.register') }}">{{ trans('labels.registerNavbar') }}</a>
+    </li>
+  @endif
 @endsection
 
 @section('breadcrumb')
@@ -67,11 +70,11 @@ Ultime Recensioni
         <div class="card-block">
           <br>
           <h3 class="card-title">{{ $review->title }} </h3>
-          <p class="card-text"> Regista: {{ $review->director }} </p>
-          <p class="card-text"> Genere: {{ $review->genre }} </p>
-          <p class="card-text"> Durata: {{ $review->duration }} minuti </p>
-          <p class="card-text"> Voto medio: {{ $review->medium_rate }} (su {{ $review->review_number }} recensioni)</p>
-          <a href="{{ route('review.showReviews', ['id' => $review->movie_id] ) }}" class="mt-auto btn btn-primary">Tutte le recensioni</a>
+          <p class="card-text"> {{ trans('labels.director') }}: {{ $review->director }} </p>
+          <p class="card-text"> {{ trans('labels.genre') }}: {{ $review->genre }} </p>
+          <p class="card-text"> {{ trans('labels.duration') }}: {{ $review->duration }} minuti </p>
+          <p class="card-text"> {{ trans('labels.averageVote') }}: {{ $review->medium_rate }} ({{ $review->review_number }} {{ trans('labels.review') }})</p>
+          <a href="{{ route('review.showReviews', ['id' => $review->movie_id] ) }}" class="mt-auto btn btn-primary">{{ trans('labels.allReviews') }}</a>
         </div>
       </div>
     </div>
@@ -82,12 +85,12 @@ Ultime Recensioni
     <div class="col-md-5 px-5">
     <br>
 
-    <p class="card-text"> Voto: {{ $review->rate }} </p>
+    <p class="card-text"> {{ trans('labels.vote') }}: {{ $review->rate }} </p>
     </div>
     <div class="col-md-7 px-5">
     <br>
 
-    <p class="card-text"> Recensione: <br>{{ $review->text }}</p>
+    <p class="card-text"> {{ trans('labels.review') }}: <br>{{ $review->text }}</p>
     <br>
 
   </div>
