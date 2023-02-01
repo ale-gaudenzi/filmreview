@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataLayer;
+use Illuminate\Support\Facades\Redirect;
 
 class MovieController extends Controller
 {
@@ -24,7 +25,7 @@ class MovieController extends Controller
 
     }
 
-    public function newMovieForm(Request $request) {
+    public function show(Request $request) {
         session_start();
 
         $dl = new DataLayer();
@@ -33,5 +34,16 @@ class MovieController extends Controller
             return view('newmovie')->with('logged', true)
             ->with('loggedName', $_SESSION['loggedName']);
         } 
+    }
+
+    public function store(Request $request) {
+        session_start();
+        
+        $dl = new DataLayer();
+        $dl->addMovie($request->input('title'), $request->input('director'), $request->input('year'), 
+                        $request->input('genre'), $request->input('duration'), 
+                        $request->input('imagelink'));
+        
+        return Redirect::to(route('review.new'));
     }
 }

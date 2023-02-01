@@ -55,33 +55,71 @@ function checkSearch() {
 
 function checkMovie() {
     title = $("#title");
+    year = $("#year");
     genre = $("#genre");
     duration = $("#duration");
-    
-    movie_msg = $("#invalid-movie");
-    rate_msg = $("#invalid-rate");
+    link = $("#imagelink");
+    director = $("#director");
+
+    title_msg = $("#invalid-title");
+    year_msg = $("#invalid-year");
+    genre_msg = $("#invalid-genre");
+    duration_msg = $("#invalid-duration");
+    link_msg = $("#invalid-link");
+    director_msg = $("#invalid-director");
     success_msg = $("#success-message");
+
+    var year_int = parseInt(year.val())
     var error = false;
 
-    if (rate.val() == "Voto") {
-        rate_msg.html("  Il campo voto è obbligatorio!");
-        rate.focus();
+    if (title.val() == "") {
+        title_msg.html(Lang.get('labels.emptytitle'));
+        year.focus();
         error = true;
     } else {
-        rate_msg.html("");
+        title_msg.html("");
+    }
+
+    if (director.val() == "") {
+        director_msg.html(Lang.get('labels.emptydirector'));
+        director.focus();
+        error = true;
+    } else {
+        director_msg.html("");
     }
     
-    if (movie.val() == "Film già presenti") {
-        movie_msg.html("  Devi selezionare un film!");
-        movie.focus();
+    if (year.val() == "") {
+        year_msg.html(Lang.get('labels.emptyyear'));
+        year.focus();
+        error = true;
+    } else if (year_int < 1895 || year_int > 2023) {
+        year_msg.html(Lang.get('labels.wrongyear'));
+        year.focus();
+        error = true;
+    }
+    else {
+        year_msg.html("");
+    }
+
+    if (genre.val() == "") {
+        genre_msg.html(Lang.get('labels.emptygenre'));
+        genre.focus();
         error = true;
     } else {
-        movie_msg.html("");
+        genre_msg.html("");
     }
-    success_msg.html("Recensione inserita!");
+    
+    if (duration.val() == "") {
+        duration_msg.html(Lang.get('labels.emptyduration'));
+        duration.focus();
+        error = true;
+    } else {
+        duration_msg.html("");
+    }
 
     if (!error) {
-        $('form[name=review_form]').submit();
+        success_msg.html("Film inserito!");
+        $('form[name=movie-form]').submit();
     }
 }
 

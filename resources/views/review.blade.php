@@ -43,7 +43,7 @@
 @endsection
 
 @section('corpo')
-<div class="container py-3 col-md-8">
+<div class="container py-3 col-md-6">
   <div class="card">
     <div class="row ">
       <div class="col-md-5">
@@ -55,7 +55,7 @@
           </ol>
           <div class="carousel-inner"> <!--non carousel-->
             <div class="carousel-item active">
-              <img class="d-block" src="https://picsum.photos/450/300?image=1072" alt="">
+              <img class="d-block col-md-8 offset-md-3 py-3" src="{{ $movie->imagelink }}" alt="" width="300" height="300">
             </div>
           </div>
         </div>
@@ -64,11 +64,12 @@
       <div class="col-md-7 px-5">
         <div class="card-block">
           <br>
-          <h3 class="card-title">{{ $movie->title }} </h3>
+          <h3 class="card-title">{{ $movie->title }}</h3>
+          <p class="card-text"> {{ trans('labels.year') }}: {{ $movie->year }} </p>
           <p class="card-text"> {{ trans('labels.director') }}: {{ $movie->director }} </p>
           <p class="card-text"> {{ trans('labels.genre') }}: {{ $movie->genre }} </p>
           <p class="card-text"> {{ trans('labels.duration') }}: {{ $movie->duration }} minuti </p>
-          <p class="card-text"> {{ trans('labels.averageVote') }}: {{ $movie->medium_rate }} ({{ $movie->review_number }} {{ trans('labels.review') }})</p>
+          <p class="card-text"> {{ trans('labels.averageVote') }}: {{number_format( $movie->medium_rate, 2) }} ({{ $movie->review_number }} {{ trans('labels.reviews') }})</p>
         </div>
       </div>
     </div>

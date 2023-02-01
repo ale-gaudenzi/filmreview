@@ -16,7 +16,7 @@ class DataLayer {
 
     public function listReviewsWithMovieByDate() {
         $reviews = DB::table('review')->join('movie', 'review.movie', '=', 'movie.movie_id')
-        ->select('review.*', 'movie.title', 'movie.director', 'movie.genre', 'movie.duration', 'movie.review_number', 'movie.medium_rate', 'movie.movie_id')->get();
+        ->select('review.*', 'movie.title', 'movie.director', 'movie.genre', 'movie.duration', 'movie.review_number', 'movie.medium_rate', 'movie.movie_id', 'movie.year', 'movie.imagelink')->get();
         return $reviews->sortByDesc('review_id');
     }
 
@@ -24,7 +24,7 @@ class DataLayer {
         $user = DB::table('user')->where('username', $user_name)->get();
         $user_id = $user[0]->user_id;
         $reviews = DB::table('review')->join('movie', 'review.movie', '=', 'movie.movie_id')
-        ->select('review.*', 'movie.title', 'movie.director', 'movie.genre', 'movie.duration', 'movie.review_number', 'movie.medium_rate', 'movie.movie_id')
+        ->select('review.*', 'movie.title', 'movie.director', 'movie.genre', 'movie.duration', 'movie.review_number', 'movie.medium_rate', 'movie.movie_id', 'movie.year', 'movie.imagelink')
         ->where('user', $user_id)->get();
         return $reviews->sortByDesc('review_id');
     }
@@ -72,6 +72,17 @@ class DataLayer {
         $review->user = $user_id;
         $review->save();
         $this->adjustAverage($movie[0]->movie_id);
+    }
+
+    public function addMovie($title, $director, $year, $genre, $duration, $imagelink) {
+        $movie = New Movie;
+        $movie->title = $title;
+        $movie->director = $director;
+        $movie->year = $year;
+        $movie->genre = $genre;
+        $movie->duration = $duration;
+        $movie->imagelink = $imagelink;
+        $movie->save();
     }
 
     public function findMovieByTitle($title)

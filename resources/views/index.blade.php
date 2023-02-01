@@ -48,7 +48,7 @@
 
 
 @foreach($reviewList as $review)
-<div class="container py-3 col-md-8">
+<div class="container py-3 col-md-6">
   <div class="card">
     <div class="row ">
       <div class="col-md-5">
@@ -60,7 +60,7 @@
           </ol>
           <div class="carousel-inner"> <!--non carousel-->
             <div class="carousel-item active">
-              <img class="d-block" src="https://picsum.photos/450/300?image=1072" alt="">
+              <img class="d-block col-md-8 offset-md-3 py-3" src="{{ $review->imagelink }}" alt="" width="300" height="300">
             </div>
           </div>
         </div>
@@ -69,11 +69,12 @@
       <div class="col-md-7 px-5">
         <div class="card-block">
           <br>
-          <h3 class="card-title">{{ $review->title }} </h3>
+          <h3 class="card-title">{{ $review->title }}</h3>
+          <p class="card-text"> {{ trans('labels.year') }}: {{ $review->year }} </p>
           <p class="card-text"> {{ trans('labels.director') }}: {{ $review->director }} </p>
           <p class="card-text"> {{ trans('labels.genre') }}: {{ $review->genre }} </p>
           <p class="card-text"> {{ trans('labels.duration') }}: {{ $review->duration }} minuti </p>
-          <p class="card-text"> {{ trans('labels.averageVote') }}: {{ $review->medium_rate }} ({{ $review->review_number }} {{ trans('labels.review') }})</p>
+          <p class="card-text"> {{ trans('labels.averageVote') }}: {{ number_format ($review->medium_rate,2) }} ({{ $review->review_number }} {{ trans('labels.reviews') }})</p>
           <a href="{{ route('review.showReviews', ['id' => $review->movie_id] ) }}" class="mt-auto btn btn-primary">{{ trans('labels.allReviews') }}</a>
         </div>
       </div>

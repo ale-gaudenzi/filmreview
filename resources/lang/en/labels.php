@@ -45,12 +45,21 @@ return [
 
     'title' => 'Title',
     'genre' => 'Genre',
-    'duration' => 'Duration (min)',
+    'durationmin' => 'Duration (min)',
     'imagelink' => 'Image link',
     'year' => 'Year',
+    'director' => 'Regista',
+
 
     'voteobbl' => 'Vote field is mandatory!',
     'filmobbl' => 'You have to select a movie!',
     'successReview' => 'Review posted!',
+    'emptytitle' => 'Title is mandatory!',
+    'emptyyear' => 'Year is mandatory!',
+    'wrongyear' => 'Year is not valid!',
+    'emptygenre' => 'Genre is mandatory!',
+    'emptyduration' => 'Duration is mandatory!',
+    'emptydirector' => 'Director is mandatory!',
+
 
 ];

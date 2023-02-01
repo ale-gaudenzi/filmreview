@@ -45,13 +45,21 @@ return [
 
     'title' => 'Titolo',
     'genre' => 'Genere',
-    'duration' => 'Durata (min)',
+    'durationmin' => 'Durata (min)',
     'imagelink' => 'Link immagine',
     'year' => 'Anno',
+    'director' => 'Regista',
+
 
     'voteobbl' => 'Il campo voto è obbligatorio!',
     'filmobbl' => 'Devi selezionare un film!',
     'successReview' => 'Recensione inserita!',
+    'emptytitle' => 'Il titolo è obbligatorio!',
+    'emptyyear' => 'L\'anno è obbligatorio!',
+    'wrongyear' => 'L\'anno è sbagliato!',
+    'emptygenre' => 'Il genere è obbligatorio!',
+    'emptyduration' => 'La durata è obbligatoria!',
+    'emptydirector' => 'Il regista è obbligatoria!',
 
 ];
  
