@@ -1,4 +1,4 @@
-const { words } = require("lodash");
+//const { words } = require("lodash");
 
 
 function checkReview() {
@@ -74,7 +74,7 @@ function checkMovie() {
 
     if (title.val() == "") {
         title_msg.html(Lang.get('labels.emptytitle'));
-        year.focus();
+        title.focus();
         error = true;
     } else {
         title_msg.html("");
@@ -124,3 +124,59 @@ function checkMovie() {
 }
 
 
+function searchMovie() {
+    title = $("#title");
+    title_msg = $("#invalid-title");
+
+    var error = false;
+
+    if (title.val() == "") {
+        title_msg.html(Lang.get('labels.emptytitle'));
+        title.focus();
+        error = true;
+    } else {
+        title_msg.html("");
+    }
+
+    if (!error) {
+        theMovieDb.search.getMovie({ "query": encodeURI(title.val()) }, successSearch, errorCB);
+    }
+}
+
+function insertMovie() {
+    
+
+}
+
+function successSearch(data) {
+    console.log("Success callback: " + data);
+    nothing_msg = $("#nothing-message");
+    result_table = $("#result-table");
+    result_table.empty();
+
+    data = JSON.parse(data);
+
+    if (data.results.length != 0) {
+        for (var i = 0; i < data.results.length; i++) {  
+            var movie_title = data.results[i].title;
+            var movie_id = data.results[i].id;
+            var movie_year = data.results[i].release_date.substring(0,4);
+            var label = Lang.get('labels.insert');
+    
+            result_table.append('<tr' + ' id=\"' + movie_id + '\"><td>' + movie_title + '</td><td>' + movie_year + '</td><td> '
+                + '<form id="movie-insert-form" name="movie-insert-form" action="{{ route(\'movie.store\') }}" method="post"><label for="submit-movie" class="btn btn-sm">' + label + '</label><input id="submit-movie" type="submit" value="Save" hidden onclick="event.preventDefault(); insertMovie()"/></form>' + '</td ></tr > ');
+        }
+        nothing_msg.html("");
+
+    }
+    else {
+        nothing_msg.html('Nothing found');
+
+    }
+
+    
+}
+
+function errorCB(data) {
+    console.log("Error callback: " + data);
+}

@@ -10,6 +10,8 @@ return [
     'registrationTitle' => 'Registrati',
     'loginTitle' => 'Login',
     'newMovieTitle' => 'Nuovo film',
+    'search' => 'Cerca',
+
 
     'lastReviews' => 'Ultime recensioni inserite',
     'bestNavbar' => 'Migliori film',

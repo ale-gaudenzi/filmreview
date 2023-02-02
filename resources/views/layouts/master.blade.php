@@ -12,7 +12,7 @@
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="{{ url('/') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('/') }}/js/myScript.js"></script>
-
+    <script src="{{ url('/') }}/js/themoviedb.js"></script>
     <script src="{{ url('/') }}/messages.js"></script>
 
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -43,8 +43,8 @@
 
                 <div class="container col-md-5">
                     <form class="d-flex justify-content-left" name="search_form" method="GET" action="{{ route('search')}}" id="search_form">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_text" name="search_text">
-                        <button class="btn btn-outline-success" type="submit" onclick="checkSearch()">Search</button>
+                        <input class="form-control me-2" type="search" placeholder="{{ trans('labels.search') }}" aria-label="Search" id="search_text" name="search_text">
+                        <button class="btn btn-outline-success" type="submit" onclick="checkSearch()">{{ trans('labels.search') }}</button>
                     </form>
                 </div>
 

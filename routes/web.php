@@ -25,6 +25,7 @@ Route::post('/user/register', [AuthController::class, 'adduser'])->name('user.re
 Route::resource('movie', MovieController::class);
 Route::get('/movie', [MovieController::class, 'getBest']) -> name('best');
 Route::get('/movie/new', [MovieController::class, 'newMovieForm']) -> name('newmovie');
+Route::get('/movie/search', [MovieController::class, 'searchMovieTable']) -> name('movie.search');
 
 Route::resource('review', ReviewController::class);
 Route::get('/review', [ReviewController::class, 'newReviewForm']) -> name('review.new');

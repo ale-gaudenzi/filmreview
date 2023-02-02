@@ -42,62 +42,48 @@
 
 <div class="container col-md-8">
 <div class="row" style="margin-top: 1em">
-<div class="col-md-4 offset-md-4">
+<div class="col-md-8 offset-md-2">
 <div class="tab-content">
 <div class="tab-pane active">
-    <form id="movie-form" name="movie-form" action="{{ route('movie.store') }}" method="post" style="margin-top: 2em">
     @csrf
-        <label for="title">{{ trans('labels.title') }}:</label>
-        <span class="invalid-input" id="invalid-title"></span>
-        <div class="form-group">
-            <input type="text" name="title" id="title" class="form-control mb-2" placeholder="{{ trans('labels.title') }}"/>
-        </div>
-
-        <label for="year">{{ trans('labels.director') }}:</label>
-        <span class="invalid-input" id="invalid-director"></span>
-        <div class="form-group">
-            <input type="text" name="director" id="director" class="form-control mb-2" placeholder="{{ trans('labels.director') }}"/>
-        </div>
-
-        <label for="genre">{{ trans('labels.genre') }}:</label>
-        <span class="invalid-input" id="invalid-genre"></span>
-        <div class="form-group">
-            <input type="text" name="genre" id="genre" class="form-control mb-2" placeholder="{{ trans('labels.genre') }}"/>
-        </div>
-
-        <div class='row'>
-            <div class="col-sm">
-                <label for="year">{{ trans('labels.year') }}:</label>
-                <span class="invalid-input" id="invalid-year"></span>
-                <div class="form-group">
-                    <input type="text" name="year" id="year" class="form-control mb-2 col-md-2" placeholder="{{ trans('labels.year') }}"/>
-                </div>
+    <div class='row'>
+        <div class="col-md-10">
+            <label for="title">{{ trans('labels.title') }}:</label>
+            <span class="invalid-input" id="invalid-title"></span>
+            <div class="form-group">
+                <input type="text" name="title" id="title" class="form-control mb-2" placeholder="{{ trans('labels.title') }}"/>
             </div>
-
-            <div class="col-sm">
-                <label for="duration">{{ trans('labels.durationmin') }}:</label>
-                <span class="invalid-input" id="invalid-duration"></span>
-                <div class="form-group">
-                    <input type="text" name="duration" id="duration" class="form-control mb-2" placeholder="{{ trans('labels.durationmin') }}"/>
-                </div>
+            </div>
+            <div class="col-md-1">
+            <div class="form-group col-md-4 py-4 offset-md-4 mb-2">
+                <label for="search-movie" class="btn btn-primary btn-large btn-block">{{ trans('labels.search') }}</label>
+                <input id="search-movie" type="submit" value="Save" hidden onclick="event.preventDefault(); searchMovie()"/>
             </div>
         </div>
+    </div>
 
-        <label for="image">{{ trans('labels.imagelink') }}:</label>
-        <span class="invalid-input" id="invalid-link"></span>
-        <div class="form-group">
-            <input type="text" name="imagelink" id="imagelink" class="form-control mb-2" placeholder="{{ trans('labels.imagelink') }}"/>
-        </div>
+    <div class="container col-md-6">
+        <span id="nothing-message"></span>
+    </div>
 
+    <table class='table table-striped' id='result-table' name='result-table'>
+
+    </table>
+
+
+    @csrf
+
+    <form id="movie-insert-form" name="movie-insert-form" action="{{ route('movie.store') }}" method="post" style="margin-top: 2em">
         <div class="form-group col-md-4 py-4 offset-md-4 mb-2">
             <label for="submit-movie" class="btn btn-primary btn-large btn-block">{{ trans('labels.insert') }}</label>
-            <input id="submit-movie" type="submit" value="Save" hidden onclick="event.preventDefault(); checkMovie()"/>
-        </div>
-
-        <div class="container col-md-6">
-        <span id="success-message"></span>
+            <input id="submit-movie" type="submit" value="Save" hidden onclick="event.preventDefault(); insertMovie()"/>
         </div>
     </form>
+
+    <div class="container col-md-6">
+        <span id="success-message"></span>
+    </div>
+
 </div>
 </div>
 </div>

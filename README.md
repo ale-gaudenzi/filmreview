@@ -1,5 +1,5 @@
+Website that permit the user to post review of movie.
+Scholastic project for Web Programming course.
 
-<<<<<<< HEAD
+It uses API of www.themoviedb.org to retrieve the information about movie, in particular using cavestri/themoviedb-javascript-library javascript wrapper.
 
-=======
->>>>>>> 8ef7691e5d675fc63e7e53b33beef43136792604

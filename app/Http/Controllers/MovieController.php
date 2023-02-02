@@ -46,4 +46,8 @@ class MovieController extends Controller
         
         return Redirect::to(route('review.new'));
     }
+
+    public function searchMovieTable(Request $request) {
+        
+    }
 }

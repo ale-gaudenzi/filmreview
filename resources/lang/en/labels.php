@@ -10,6 +10,7 @@ return [
     'registrationTitle' => 'Sign in',
     'loginTitle' => 'Login',
     'newMovieTitle' => 'New movie',
+    'search' => 'Search',
 
     'lastReviews' => 'Last reviews posted',
     'bestNavbar' => 'Best movies',
