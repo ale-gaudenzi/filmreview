@@ -62,5 +62,5 @@ return [
     'emptyduration' => 'Duration is mandatory!',
     'emptydirector' => 'Director is mandatory!',
 
-
+    'powered' => 'Powered by'
 ];

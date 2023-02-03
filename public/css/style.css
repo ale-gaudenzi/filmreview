@@ -53,3 +53,10 @@ a {
 p {
     margin-bottom: 10px;
 }
+
+bottom-element {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

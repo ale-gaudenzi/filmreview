@@ -1,9 +1,4 @@
-//const { words } = require("lodash");
-
-
 function checkReview() {
-    //Lang.setLocale('en');
-
     text = $("#review_text");
     rate = $("#rate_select");
     movie = $("#movie_select");
@@ -139,44 +134,114 @@ function searchMovie() {
     }
 
     if (!error) {
-        theMovieDb.search.getMovie({ "query": encodeURI(title.val()) }, successSearch, errorCB);
+        theMovieDb.search.getMovie({ "query": encodeURI(title.val()) }, function (data) {
+            console.log("Success callback: " + data);
+            nothing_msg = $("#nothing-message");
+            result_table = $("#result-table");
+            result_table.empty();
+        
+            data = JSON.parse(data);
+            result_table.append('<tr><th>'+ Lang.get('labels.title') +'</th><th>'+ Lang.get('labels.year') +'</th><th></th></tr> ')
+        
+            if (data.results.length != 0) {
+                for (var i = 0; i < data.results.length; i++) {
+                    var movie_title = data.results[i].title;
+                    
+                    if (!checkMovieFound(movie_title)) {
+                        var movie_id = data.results[i].id;
+                        var movie_year = data.results[i].release_date.substring(0, 4);
+                        var label = Lang.get('labels.insert');
+                
+                        result_table.append('<tr><td>' + movie_title + '</td><td>' + movie_year + '</td><td> '
+                            + '<form method="POST" action="/profile"> <label for="submit-movie-'+ movie_id +'" class="btn btn-sm">' +
+                            label + '</label><input id="submit-movie-'+ movie_id +'" type="submit" value="Save" hidden onclick="event.preventDefault(); requestMovieInfo('
+                            + movie_id + ')"/></form>' + '</td ></tr > ');
+                    }
+                }
+                nothing_msg.html("");
+            }
+            else {
+                nothing_msg.html('Nothing found');
+            }   
+        }, errorCB);
     }
 }
 
-function insertMovie() {
-    
+var m_title;
+var m_year;
+var m_genre;
+var m_duration;
+var m_director;
+var m_imagelink;
+var base_path = "https://image.tmdb.org/t/p/w500";
 
+function requestMovieInfo(movie_to_request) { 
+
+
+    theMovieDb.movies.getById({ "id": movie_to_request }, function (data) {
+        console.log("Success ID callback: " + data);
+        data = JSON.parse(data);
+        m_title = data.title;
+        m_year = data.release_date.substring(0,4);
+        m_genre = data.genres[0].name;
+        m_duration = data.runtime;
+        m_imagelink = base_path + data.poster_path;
+    }, errorCB);
+
+    theMovieDb.movies.getCredits({ "id": movie_to_request }, function (data) {
+        console.log("Success credits callback: " + data);
+        data = JSON.parse(data);
+        m_director = data.crew.filter(x => x.job === "Director")[0].name;
+        pushMovie();
+    }, errorCB);
 }
 
-function successSearch(data) {
-    console.log("Success callback: " + data);
-    nothing_msg = $("#nothing-message");
-    result_table = $("#result-table");
-    result_table.empty();
-
-    data = JSON.parse(data);
-
-    if (data.results.length != 0) {
-        for (var i = 0; i < data.results.length; i++) {  
-            var movie_title = data.results[i].title;
-            var movie_id = data.results[i].id;
-            var movie_year = data.results[i].release_date.substring(0,4);
-            var label = Lang.get('labels.insert');
-    
-            result_table.append('<tr' + ' id=\"' + movie_id + '\"><td>' + movie_title + '</td><td>' + movie_year + '</td><td> '
-                + '<form id="movie-insert-form" name="movie-insert-form" action="{{ route(\'movie.store\') }}" method="post"><label for="submit-movie" class="btn btn-sm">' + label + '</label><input id="submit-movie" type="submit" value="Save" hidden onclick="event.preventDefault(); insertMovie()"/></form>' + '</td ></tr > ');
+function pushMovie() {
+    $.ajax({
+        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+        type: 'post',
+        url: '/ajaxInsertMovie',
+        data: {
+            title: m_title,
+            director: m_director,
+            year: m_year,
+            genre: m_genre,
+            duration: m_duration,
+            imagelink: m_imagelink
         }
-        nothing_msg.html("");
-
-    }
-    else {
-        nothing_msg.html('Nothing found');
-
-    }
-
-    
+    });
 }
+
 
 function errorCB(data) {
     console.log("Error callback: " + data);
 }
+
+
+function checkMovieFound(movie_title)
+{
+    found_message = $("#found-message");
+    found = false;
+
+    $.ajax({
+        type: 'get',
+        url: '/ajaxCheckMovie',
+        data: {title: movie_title.trim()},
+
+        success: function (data) {
+            console.log("AAAAAAAA: " + data);
+
+            if (data.found)
+            {
+                found_msg.html("FILM GIA PRESENTE TEMPS");
+                found = true;
+            } else {
+                found = false;
+            }
+        }
+    });
+
+    return found;
+} 
+    
+

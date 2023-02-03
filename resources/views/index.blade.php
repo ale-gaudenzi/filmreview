@@ -48,7 +48,7 @@
 
 
 @foreach($reviewList as $review)
-<div class="container py-3 col-md-6">
+<div class="container py-3 col-md-8">
   <div class="card">
     <div class="row ">
       <div class="col-md-5">

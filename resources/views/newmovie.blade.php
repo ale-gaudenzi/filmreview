@@ -63,31 +63,32 @@
     </div>
 
     <div class="container col-md-6">
-        <span id="nothing-message"></span>
-    </div>
-
-    <table class='table table-striped' id='result-table' name='result-table'>
-
-    </table>
-
-
-    @csrf
-
-    <form id="movie-insert-form" name="movie-insert-form" action="{{ route('movie.store') }}" method="post" style="margin-top: 2em">
-        <div class="form-group col-md-4 py-4 offset-md-4 mb-2">
-            <label for="submit-movie" class="btn btn-primary btn-large btn-block">{{ trans('labels.insert') }}</label>
-            <input id="submit-movie" type="submit" value="Save" hidden onclick="event.preventDefault(); insertMovie()"/>
-        </div>
-    </form>
-
-    <div class="container col-md-6">
+        <span id="found-message"></span>
         <span id="success-message"></span>
     </div>
 
+    <table class='table table-striped' id='result-table' name='result-table'>
+    </table>
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+
+
 </div>
 </div>
+
+<div class="col-md-8 offset-md-2" >
+<p>{{ trans('labels.powered') }}</p>
+<img src="{{ url('/') }}/img/tmdb.svg" alt="tmdb"> 
+<p></p>
 </div>
+
 </div>
+
+
+</div>
+
+
 </div>
 
 

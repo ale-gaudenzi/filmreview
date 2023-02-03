@@ -9,6 +9,7 @@
 
 var theMovieDb = {};
 
+
 theMovieDb.common = {
   api_key: "f55d1d1abf7155e3cdda1578296e9fcf",
   base_uri: "http://api.themoviedb.org/3/",
@@ -18,7 +19,6 @@ theMovieDb.common = {
   generateQuery: function(options) {
     'use strict';
     var myOptions, query, option;
-
     myOptions = options || {};
     query = "?api_key=" + theMovieDb.common.api_key + "&language=" + theMovieDb.common.language;
 

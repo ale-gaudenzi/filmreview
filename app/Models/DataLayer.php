@@ -82,13 +82,14 @@ class DataLayer {
         $movie->genre = $genre;
         $movie->duration = $duration;
         $movie->imagelink = $imagelink;
+        $movie->review_number = 0;
+        $movie->medium_rate = 0;
         $movie->save();
     }
 
     public function findMovieByTitle($title)
     {
         $movie = Movie::where('title', $title);
-
         if (count($movie) == 0) {
             return false;
         } else {

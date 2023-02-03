@@ -2,12 +2,16 @@
 <html>
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta charset="UTF-8">
     <title>@yield('titolo')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    
     <!-- Fogli di stile -->
     <link rel="stylesheet" href="{{ url('/') }}/css/bootstrap.css">
     <link rel="stylesheet" href="{{ url('/') }}/css/@yield('stile')">
+
     <!-- jQuery e plugin JavaScript -->
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="{{ url('/') }}/js/bootstrap.min.js"></script>

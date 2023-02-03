@@ -47,7 +47,28 @@ class MovieController extends Controller
         return Redirect::to(route('review.new'));
     }
 
-    public function searchMovieTable(Request $request) {
+
+    public function ajaxInsertMovie(Request $request) {
+        session_start();
         
+        $dl = new DataLayer();
+        $dl->addMovie($request->input('title'), $request->input('director'), $request->input('year'), 
+                        $request->input('genre'), $request->input('duration'), 
+                        $request->input('imagelink'));
+                
+        return Redirect::to(route('review.new'));
+    }
+
+    public function ajaxCheckMovie(Request $request) 
+    {    
+        $dl = new DataLayer();
+        
+        if($dl->findMovieByTitle($request->input('title')))
+        {
+            $response = array('found'=>true);
+        } else {
+            $response = array('found'=>false);
+        }
+        return response()->json($response);
     }
 }

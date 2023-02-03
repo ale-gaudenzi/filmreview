@@ -36,4 +36,8 @@ Route::get('/ajaxReview', [ReviewController::class, 'ajaxCheckReview']);
 
 Route::get('/search', [SearchController::class, 'search']) -> name('search');
 
+Route::post('/ajaxInsertMovie', [MovieController::class, 'ajaxInsertMovie']);
+Route::get('/ajaxCheckMovie', [MovieController::class, 'ajaxCheckMovie']);
+
+
 });

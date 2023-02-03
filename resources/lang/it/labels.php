@@ -63,5 +63,7 @@ return [
     'emptyduration' => 'La durata è obbligatoria!',
     'emptydirector' => 'Il regista è obbligatoria!',
 
+    'powered' => 'Offerto da'
+
 ];
  
