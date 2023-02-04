@@ -118,7 +118,6 @@ function checkMovie() {
     }
 }
 
-
 function searchMovie() {
     title = $("#title");
     title_msg = $("#invalid-title");
@@ -146,7 +145,7 @@ function searchMovie() {
             if (data.results.length != 0) {
                 for (var i = 0; i < data.results.length; i++) {
                     var movie_title = data.results[i].title;
-                    
+
                     if (!checkMovieFound(movie_title)) {
                         var movie_id = data.results[i].id;
                         var movie_year = data.results[i].release_date.substring(0, 4);
@@ -176,8 +175,6 @@ var m_imagelink;
 var base_path = "https://image.tmdb.org/t/p/w500";
 
 function requestMovieInfo(movie_to_request) { 
-
-
     theMovieDb.movies.getById({ "id": movie_to_request }, function (data) {
         console.log("Success ID callback: " + data);
         data = JSON.parse(data);
@@ -212,35 +209,32 @@ function pushMovie() {
     });
 }
 
-
 function errorCB(data) {
     console.log("Error callback: " + data);
 }
 
-
 function checkMovieFound(movie_title)
 {
-    found_message = $("#found-message");
-    found = false;
+    found_msg = $("#found-message");
+    var found = false;
 
     $.ajax({
         type: 'get',
         url: '/ajaxCheckMovie',
-        data: {title: movie_title.trim()},
+        data: { title: movie_title.trim() },
+        async: false,
 
         success: function (data) {
-            console.log("AAAAAAAA: " + data);
-
             if (data.found)
             {
-                found_msg.html("FILM GIA PRESENTE TEMPS");
+                console.log("trovato: " + data);
                 found = true;
             } else {
+                console.log("non trovato: " + data);
                 found = false;
             }
         }
     });
-
     return found;
 } 
     
