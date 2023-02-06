@@ -152,9 +152,9 @@ function searchMovie() {
                         var label = Lang.get('labels.insert');
                 
                         result_table.append('<tr><td>' + movie_title + '</td><td>' + movie_year + '</td><td> '
-                            + '<form method="POST" action="/profile"> <label for="submit-movie-'+ movie_id +'" class="btn btn-sm">' +
+                            + '<label for="submit-movie-'+ movie_id +'" class="btn btn-sm">' +
                             label + '</label><input id="submit-movie-'+ movie_id +'" type="submit" value="Save" hidden onclick="event.preventDefault(); requestMovieInfo('
-                            + movie_id + ')"/></form>' + '</td ></tr > ');
+                            + movie_id + ')"/>' + '</td ></tr > ');
                     }
                 }
                 nothing_msg.html("");
@@ -189,11 +189,11 @@ function requestMovieInfo(movie_to_request) {
         console.log("Success credits callback: " + data);
         data = JSON.parse(data);
         m_director = data.crew.filter(x => x.job === "Director")[0].name;
-        pushMovie();
+        pushMovie(movie_to_request);
     }, errorCB);
 }
 
-function pushMovie() {
+function pushMovie(movie_to_request) {
     $.ajax({
         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
         type: 'post',
@@ -205,6 +205,9 @@ function pushMovie() {
             genre: m_genre,
             duration: m_duration,
             imagelink: m_imagelink
+        },
+        success: function (data) {
+            window.location.href = "/review";
         }
     });
 }

@@ -52,11 +52,12 @@ class MovieController extends Controller
         session_start();
         
         $dl = new DataLayer();
-        $dl->addMovie($request->input('title'), $request->input('director'), $request->input('year'), 
-                        $request->input('genre'), $request->input('duration'), 
-                        $request->input('imagelink'));
-                
-        return Redirect::to(route('review.new'));
+            $dl->addMovie($request->input('title'), $request->input('director'), $request->input('year'), 
+            $request->input('genre'), $request->input('duration'), 
+            $request->input('imagelink'));
+        
+
+        
     }
 
     public function ajaxCheckMovie(Request $request) 

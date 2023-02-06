@@ -63,7 +63,6 @@
     </div>
 
     <div class="container col-md-6">
-        <span id="found-message"></span>
         <span id="success-message"></span>
     </div>
 
