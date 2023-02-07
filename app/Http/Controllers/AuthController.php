@@ -27,6 +27,11 @@ class AuthController extends Controller
         if ($dl->validUser($request->input('username'), $request->input('password'))) {
             $_SESSION['logged'] = true;
             $_SESSION['loggedName'] = $request->input('username');
+            if($dl->isAdmin($request->input('username'))) {
+                $_SESSION['isAdmin'] = true;
+            } else {
+                $_SESSION['isAdmin'] = false;
+            }
             return Redirect::to(route('home'));
         }
        
@@ -40,7 +45,7 @@ class AuthController extends Controller
     public function adduser(Request $request){
         $dl = new DataLayer();
         
-        $dl->addUser($request->input('username'), $request->input('password'), $request->input('email'));
+        $dl->addUser($request->input('username'), $request->input('password'), $request->input('email'), false);
        
         return Redirect::to(route('user.login'));
     }

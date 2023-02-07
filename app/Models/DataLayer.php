@@ -14,6 +14,20 @@ class DataLayer {
         return (md5($password) == ($users[0]->password));
     }
 
+    public function addUser($username, $password, $email, $isAdmin) {
+        $user = new User;
+        $user->username = $username;
+        $user->password = md5($password);
+        $user->email = $email;
+        $user->isAdmin = $isAdmin;
+        $user->save();
+    }
+
+    public function isAdmin($username) {
+        $user = User::where('username', $username)->get(['isAdmin']);
+        return $user[0]->isAdmin;    
+    }
+
     public function listReviewsWithMovieByDate() {
         $reviews = DB::table('review')->join('movie', 'review.movie', '=', 'movie.movie_id')
         ->select('review.*', 'movie.title', 'movie.director', 'movie.genre', 'movie.duration', 'movie.review_number', 'movie.medium_rate', 'movie.movie_id', 'movie.year', 'movie.imagelink')->get();
@@ -160,8 +174,6 @@ class DataLayer {
 
     public function deleteReview($id) {
         $review = Review::find($id)->delete();
-
     }
-
 
 }

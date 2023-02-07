@@ -81,22 +81,27 @@
     </div>
   </div>
   <div class="container col-md-12">
-  <div class="card">
-    <div class="row ">
-    <div class="col-md-5 px-5">
-    <br>
+    <div class="card">
+      <div class="row ">
+        <div class="col-md-4 px-5">
+          <br>
+          <p class="card-text"> {{ trans('labels.vote') }}: {{ $review->rate }} </p>
+        </div>
+        <div class="col-md-6 px-5">
+          <br>
+          <p class="card-text"> {{ trans('labels.review') }}: <br>{{ $review->text }}</p>
+          <br>
+        </div>
+        @if(isset($isAdmin) and $isAdmin==1)
+        <div class="col-md-2 py-4"> 
 
-    <p class="card-text"> {{ trans('labels.vote') }}: {{ $review->rate }} </p>
+          <div class="row col-md-10 gy-1">
+            <a class="btn btn-danger" href="{{ route('review.confirmDelete', ['id' => $review->review_id]) }}">{{ trans('labels.delete') }}</a>
+          </div>
+        </div>
+        @endif
+      </div>
     </div>
-    <div class="col-md-7 px-5">
-    <br>
-
-    <p class="card-text"> {{ trans('labels.review') }}: <br>{{ $review->text }}</p>
-    <br>
-
-  </div>
-    </div>
-</div>
   </div>
 </div>
 @endforeach

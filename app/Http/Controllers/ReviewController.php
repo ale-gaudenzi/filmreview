@@ -41,7 +41,7 @@ class ReviewController extends Controller
         
         if (isset($_SESSION['logged'])) {
             return view('review')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])
-            ->with('reviewList', $review_list)->with('movie', $movie[0]);
+            ->with('reviewList', $review_list)->with('movie', $movie[0])->with('isAdmin', $_SESSION['isAdmin']);
         } else {
             return view('review')->with('logged', false)->with('loggedName', $_SESSION['loggedName'])
             ->with('reviewList', $review_list)->with('movie', $movie[0]);
@@ -98,10 +98,10 @@ class ReviewController extends Controller
         ->with('review', $review)->with('movie', $movie);
     }
 
-    public function deleteReview($id)
+    public function deleteReview(Request $request, $id)
     {
         $dl = new DataLayer();
         $dl->deleteReview($id);
-        return Redirect::to(route('user.profile'));
+        return Redirect::to(route('home'));
     }
 }

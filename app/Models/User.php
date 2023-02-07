@@ -12,11 +12,9 @@ class User extends Model
     public $timestamps = false;
     use HasFactory;
 
-    protected $fillable = ['username', 'password', 'email'];
+    protected $fillable = ['username', 'password', 'email', 'isAdmin'];
     
     public function reviews() {
         return $this->hasMany(Review::class);
     }    
-    
-
 }

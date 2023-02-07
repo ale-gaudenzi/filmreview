@@ -34,7 +34,7 @@
         <div class="col-md-4 offset-md-4">
             <div class="tab-content">
                 <div class="tab-pane active" id="login-form">
-                    <form id="login-form" action="{{ route('user.login') }}" method="post" style="margin-top: 2em">
+                    <form id="login-form" action="{{ route('user.register') }}" method="post" style="margin-top: 2em">
                         @csrf
                         <div class="form-group">
                             <input type="text" name="username" class="form-control mb-2" placeholder="Username"/>
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control mb-2" placeholder="Email"/>
+                            <input type="text" name="email" class="form-control mb-2" placeholder="Email"/>
                         </div>
 
                         <div class="form-group">

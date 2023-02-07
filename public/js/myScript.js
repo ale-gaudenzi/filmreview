@@ -31,10 +31,6 @@ function checkReview() {
             data: { movie: movie.val() },
 
             success: function (data) {
-                console.log("Ajax succes request: " + data);
-
-                movie_msg.html("Gia recensito bro");
-
                 if (data.found) {
                     movie_msg.html("Gia recensito bro");
                 } else {
@@ -64,7 +60,6 @@ function checkReviewEdit() {
     }
 
     if (!error) {
-        console.log("AAAAAAA" + text.val()+rate.val());
         $('form[name=review_form_edit').submit();
     }
 }

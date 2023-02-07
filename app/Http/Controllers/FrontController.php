@@ -16,7 +16,7 @@ class FrontController extends Controller
 
         if (isset($_SESSION['logged'])) {
             return view('index')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])
-            ->with('reviewList', $review_list);
+            ->with('reviewList', $review_list)->with('isAdmin', $_SESSION['isAdmin']);
         } else {
             return view('index')->with('logged', false)
             ->with('reviewList', $review_list);
