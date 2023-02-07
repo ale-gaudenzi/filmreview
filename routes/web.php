@@ -29,15 +29,19 @@ Route::get('/movie/search', [MovieController::class, 'searchMovieTable']) -> nam
 
 Route::resource('review', ReviewController::class);
 Route::get('/review', [ReviewController::class, 'newReviewForm']) -> name('review.new');
-
 Route::get('/review/{id}/list', [ReviewController::class, 'showReviews']) -> name('review.showReviews');
-
-Route::get('/ajaxReview', [ReviewController::class, 'ajaxCheckReview']);
 
 Route::get('/search', [SearchController::class, 'search']) -> name('search');
 
 Route::post('/ajaxInsertMovie', [MovieController::class, 'ajaxInsertMovie']);
 Route::get('/ajaxCheckMovie', [MovieController::class, 'ajaxCheckMovie']);
 
+Route::get('/ajaxReviewFound', [ReviewController::class, 'ajaxReviewFound']);
+
+Route::post('/review/{id}/edit', [ReviewController::class, 'editReview']) -> name('review.editReview');
+Route::get('/review/{id}/confirmDelete', [ReviewController::class, 'confirmDeleteReview'] ) -> name('review.confirmDelete');
+Route::get('/review/{id}/delete', [ReviewController::class, 'deleteReview'] ) -> name('review.delete');
 
 });
+
+

@@ -11,6 +11,8 @@ return [
     'loginTitle' => 'Login',
     'newMovieTitle' => 'Nuovo film',
     'search' => 'Cerca',
+    'editTitle' => 'Modifica recensione di ',
+    'deleteTitle' => 'Conferma eliminazione',
 
 
     'lastReviews' => 'Ultime recensioni inserite',
@@ -63,7 +65,12 @@ return [
     'emptyduration' => 'La durata è obbligatoria!',
     'emptydirector' => 'Il regista è obbligatoria!',
 
-    'powered' => 'Offerto da'
+    'powered' => 'Offerto da',
 
+    'edit' => 'Modifica',
+    'delete' => 'Elimina',
+    'deleteQuestion' => 'Vuoi davvero eliminare la recensione di ',
+    'confirm' => 'Conferma',
+    'back' => 'Indietro',
 ];
  

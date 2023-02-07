@@ -11,6 +11,8 @@ return [
     'loginTitle' => 'Login',
     'newMovieTitle' => 'New movie',
     'search' => 'Search',
+    'editTitle' => 'Edit review of ',
+    'deleteTitle' => 'Confirm elimination',
 
     'lastReviews' => 'Last reviews posted',
     'bestNavbar' => 'Best movies',
@@ -62,5 +64,11 @@ return [
     'emptyduration' => 'Duration is mandatory!',
     'emptydirector' => 'Director is mandatory!',
 
-    'powered' => 'Powered by'
+    'powered' => 'Powered by',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'deleteQuestion' => 'Do you confirm to delete the review of ',
+    'confirm' => 'Confirm',
+    'back' => 'Back',
+
 ];

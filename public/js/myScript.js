@@ -25,8 +25,47 @@ function checkReview() {
     }
 
     if (!error) {
-        success_msg.html(Lang.get('labels.successReview'));
-        $('form[name=review_form]').submit();
+        $.ajax({
+            type: 'get',
+            url: '/ajaxReviewFound',
+            data: { movie: movie.val() },
+
+            success: function (data) {
+                console.log("Ajax succes request: " + data);
+
+                movie_msg.html("Gia recensito bro");
+
+                if (data.found) {
+                    movie_msg.html("Gia recensito bro");
+                } else {
+                    success_msg.html(Lang.get('labels.successReview'));
+                    $('form[name=review_form]').submit();
+                }
+            }
+        });
+    }
+}
+
+function checkReviewEdit() {
+    text = $("#review_text");
+    rate = $("#rate_select");
+    
+    rate_msg = $("#invalid-rate");
+    success_msg = $("#success-message");
+    var error = false;
+    console.log("AAAAAAA");
+
+    if (rate.prop('selectedIndex') == 0) {
+        rate_msg.html(Lang.get('labels.voteobbl'));
+        rate.focus();
+        error = true;
+    } else {
+        rate_msg.html("");
+    }
+
+    if (!error) {
+        console.log("AAAAAAA" + text.val()+rate.val());
+        $('form[name=review_form_edit').submit();
     }
 }
 

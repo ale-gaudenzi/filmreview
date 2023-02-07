@@ -54,10 +54,7 @@ class MovieController extends Controller
         $dl = new DataLayer();
             $dl->addMovie($request->input('title'), $request->input('director'), $request->input('year'), 
             $request->input('genre'), $request->input('duration'), 
-            $request->input('imagelink'));
-        
-
-        
+            $request->input('imagelink'));    
     }
 
     public function ajaxCheckMovie(Request $request) 

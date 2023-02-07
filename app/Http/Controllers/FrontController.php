@@ -44,6 +44,5 @@ class FrontController extends Controller
             return view('newreview')->with('logged', true)->with('loggedName', $_SESSION['loggedName']);
         } 
     }
-    
 
 }

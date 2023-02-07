@@ -29,6 +29,11 @@ class DataLayer {
         return $reviews->sortByDesc('review_id');
     }
 
+    public function listUserReviews($user_id) {
+        $reviews = DB::table('review')->where('user', $user_id)->get();
+        return $reviews;
+    }
+
     public function listMovieByRate() {
         $movies = DB::table('movie')->get();
         return $movies->sortByDesc('medium_rate');
@@ -74,6 +79,14 @@ class DataLayer {
         $this->adjustAverage($movie[0]->movie_id);
     }
 
+    public function editReview($id, $rate, $text, $movie_id) {
+        $review = Review::find($id);
+        $review->rate = $rate;
+        $review->text = $text;
+        $review->save();
+        $this->adjustAverage($movie_id);
+    }
+
     public function addMovie($title, $director, $year, $genre, $duration, $imagelink) {
         $movie = New Movie;
         $movie->title = $title;
@@ -103,10 +116,31 @@ class DataLayer {
         return $movie;
     }
 
+    public function getMovieIDByTitle($movie_title) {
+        $movie = Movie::where('title', $movie_title)->get(['movie_id']);
+        return $movie[0]->movie_id;
+    }
+
+    public function getMovieTitleByID($movie_id) {
+        $movie = Movie::where('movie_id', $movie_id)->get(['title']);
+        return $movie[0]->title;
+    }
+
+
     public function getUserID($username)
     {
         $users = User::where('username', $username)->get(['user_id']);
         return $users[0]->user_id;
+    }
+
+    public function getReviewByID($review_id) {
+        $reviews = Review::where('review_id', $review_id)->get();
+        return $reviews[0];
+    }
+
+    public function getMovieById($movie_id) {
+        $movie = Movie::where('movie_id', $movie_id)->get();
+        return $movie[0];
     }
 
     public function searchMovie($words) 
@@ -114,5 +148,20 @@ class DataLayer {
         $movie = Movie::where('title', 'like', '%' . $words . '%')->get();
         return $movie->sortByDesc('medium_rate');
     }
+
+    public function isReviewedBy($user_id, $movie_id) {
+        $review = Review::where('user', $user_id)->where('movie', $movie_id)->get();
+        if (count($review) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function deleteReview($id) {
+        $review = Review::find($id)->delete();
+
+    }
+
 
 }
