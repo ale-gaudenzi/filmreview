@@ -60,7 +60,7 @@
           </ol>
           <div class="carousel-inner"> <!--non carousel-->
             <div class="carousel-item active">
-              <img class="d-block col-md-8 offset-md-3 py-3" src="{{ $review->imagelink }}" alt="" width="300" height="300">
+              <img class="d-block col-md-8 offset-md-3 py-3 img-responsive" src="{{ $review->imagelink }}" alt="" min-width="2" min-height="3">
             </div>
           </div>
         </div>

@@ -72,5 +72,9 @@ return [
     'deleteQuestion' => 'Vuoi davvero eliminare la recensione di ',
     'confirm' => 'Conferma',
     'back' => 'Indietro',
+
+    'alreadyReviewed' => 'Già recensito!',
+    'nothingFound' => 'Nessun film trovato!',
+
 ];
  

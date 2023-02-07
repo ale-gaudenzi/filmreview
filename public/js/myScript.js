@@ -32,7 +32,7 @@ function checkReview() {
 
             success: function (data) {
                 if (data.found) {
-                    movie_msg.html("Gia recensito bro");
+                    movie_msg.html(Lang.get('labels.alreadyReviewed'));
                 } else {
                     success_msg.html(Lang.get('labels.successReview'));
                     $('form[name=review_form]').submit();
@@ -49,7 +49,6 @@ function checkReviewEdit() {
     rate_msg = $("#invalid-rate");
     success_msg = $("#success-message");
     var error = false;
-    console.log("AAAAAAA");
 
     if (rate.prop('selectedIndex') == 0) {
         rate_msg.html(Lang.get('labels.voteobbl'));
@@ -73,82 +72,11 @@ function checkSearch() {
 
     if (words.val() == '') {
         words.focus();
-        prova_msg.html("aaa");
         error = true;
     }
 
     if (!error) {
         $('form[name=search_form]').submit();
-    }
-}
-
-function checkMovie() {
-    title = $("#title");
-    year = $("#year");
-    genre = $("#genre");
-    duration = $("#duration");
-    link = $("#imagelink");
-    director = $("#director");
-
-    title_msg = $("#invalid-title");
-    year_msg = $("#invalid-year");
-    genre_msg = $("#invalid-genre");
-    duration_msg = $("#invalid-duration");
-    link_msg = $("#invalid-link");
-    director_msg = $("#invalid-director");
-    success_msg = $("#success-message");
-
-    var year_int = parseInt(year.val())
-    var error = false;
-
-    if (title.val() == "") {
-        title_msg.html(Lang.get('labels.emptytitle'));
-        title.focus();
-        error = true;
-    } else {
-        title_msg.html("");
-    }
-
-    if (director.val() == "") {
-        director_msg.html(Lang.get('labels.emptydirector'));
-        director.focus();
-        error = true;
-    } else {
-        director_msg.html("");
-    }
-    
-    if (year.val() == "") {
-        year_msg.html(Lang.get('labels.emptyyear'));
-        year.focus();
-        error = true;
-    } else if (year_int < 1895 || year_int > 2023) {
-        year_msg.html(Lang.get('labels.wrongyear'));
-        year.focus();
-        error = true;
-    }
-    else {
-        year_msg.html("");
-    }
-
-    if (genre.val() == "") {
-        genre_msg.html(Lang.get('labels.emptygenre'));
-        genre.focus();
-        error = true;
-    } else {
-        genre_msg.html("");
-    }
-    
-    if (duration.val() == "") {
-        duration_msg.html(Lang.get('labels.emptyduration'));
-        duration.focus();
-        error = true;
-    } else {
-        duration_msg.html("");
-    }
-
-    if (!error) {
-        success_msg.html("Film inserito!");
-        $('form[name=movie-form]').submit();
     }
 }
 
@@ -194,7 +122,7 @@ function searchMovie() {
                 nothing_msg.html("");
             }
             else {
-                nothing_msg.html('Nothing found');
+                nothing_msg.html(Lang.get('labels.nothingFound'));
             }   
         }, errorCB);
     }
@@ -264,10 +192,10 @@ function checkMovieFound(movie_title)
         success: function (data) {
             if (data.found)
             {
-                console.log("trovato: " + data);
+                console.log("Found: " + data);
                 found = true;
             } else {
-                console.log("non trovato: " + data);
+                console.log("Not found: " + data);
                 found = false;
             }
         }

@@ -71,4 +71,7 @@ return [
     'confirm' => 'Confirm',
     'back' => 'Back',
 
+    'alreadyReviewed' => 'Already reviewed!',
+    'nothingFound' => 'No movie found!',
+
 ];
