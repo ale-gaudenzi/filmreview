@@ -91,7 +91,7 @@
         <div class="container py-3 col-md-2">
             <div class="form-group">
                 <label for="mySubmit" class="btn btn-primary btn-large btn-block">{{ trans('labels.insert') }}</label>
-                <input id="mySubmit" type="submit" value="Save" hidden onclick="event.preventDefault(); checkReview()"/>
+                <input id="mySubmit" type="submit" class=""value="Save" hidden onclick="event.preventDefault(); checkReview()"/>
             </div>
             <span id="success-message"></span>
         </div>

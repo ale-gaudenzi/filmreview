@@ -43,7 +43,7 @@ class ReviewController extends Controller
             return view('review')->with('logged', true)->with('loggedName', $_SESSION['loggedName'])
             ->with('reviewList', $review_list)->with('movie', $movie[0])->with('isAdmin', $_SESSION['isAdmin']);
         } else {
-            return view('review')->with('logged', false)->with('loggedName', $_SESSION['loggedName'])
+            return view('review')->with('logged', false)
             ->with('reviewList', $review_list)->with('movie', $movie[0]);
         }
     }

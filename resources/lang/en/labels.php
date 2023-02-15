@@ -51,7 +51,6 @@ return [
     'durationmin' => 'Duration (min)',
     'imagelink' => 'Image link',
     'year' => 'Year',
-    'director' => 'Regista',
 
 
     'voteobbl' => 'Vote field is mandatory!',

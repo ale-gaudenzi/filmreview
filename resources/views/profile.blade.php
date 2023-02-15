@@ -48,9 +48,9 @@
             <li data-target="#CarouselTest" data-slide-to="1"></li>
             <li data-target="#CarouselTest" data-slide-to="2"></li>
           </ol>
-          <div class="carousel-inner"> <!--non carousel-->
+          <div class="carousel-inner"> 
             <div class="carousel-item active">
-              <img class="d-block col-md-8 offset-md-3 py-3" src="{{ $review->imagelink }}" alt="" width="300" height="300">
+              <img class="d-block col-md-8 offset-md-3 py-3 img-responsive" src="{{ $review->imagelink }}" alt="" min-width="300" min-height="300">
             </div>
           </div>
         </div>
@@ -75,14 +75,14 @@
       <div class="row ">
         <div class="col-md-4 px-5">
           <br>
-          <p class="card-text"> {{ trans('labels.vote') }}: {{ $review->rate }} </p>
+          <p class="card-text"> <b>{{ trans('labels.vote') }}</b>: <br>{{ $review->rate }} </p>
           <br>
 
         </div>
 
         <div class="col-md-6 px-5">
           <br>
-          <p class="card-text"> {{ trans('labels.review') }}: <br>{{ $review->text }}</p>
+          <p class="card-text"> <b>{{ trans('labels.review') }}</b>: <br>{{ $review->text }}</p>
           <br>
 
         </div>
